@@ -44,10 +44,10 @@ const SuggestedUsers = () => {
                 const isFollowing = user?.following?.includes(suggestedUser._id)
                 
                 return (
-                    <div key={suggestedUser._id} className='flex items-center justify-between my-5'>
+                    <div key={suggestedUser._id} className='flex items-center gap-2  justify-between my-5 bg-gray-200 rounded py-1 px-2'>
                         <div className='flex items-center gap-2'>
                             <Link to={`/profile/${suggestedUser?._id}`}>
-                                <Avatar>
+                                <Avatar className="w-14 h-14 border-2 border-gray-500">
                                     <AvatarImage src={suggestedUser?.profilePicture} alt="user_avatar" />
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
@@ -65,7 +65,7 @@ const SuggestedUsers = () => {
                         </div>
                         <button 
                             onClick={() => handleFollow(suggestedUser._id)}
-                            className={`text-xs font-bold cursor-pointer px-3 py-1 rounded ${
+                            className={`text-xs font-bold cursor-pointer px-3 scale-110 py-1 rounded ${
                                 isFollowing 
                                     ? 'bg-gray-200 text-gray-800 hover:bg-gray-300' 
                                     : 'bg-[#3BADF8] text-white hover:bg-[#3495d6]'

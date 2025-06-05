@@ -7,11 +7,11 @@ import SuggestedUsers from './SuggestedUsers';
 const RightSidebar = () => {
   const { user } = useSelector(store => store.auth);
   return (
-    <div className='w-fit my-1 pr-32 relative '>
+    <div className='w-fit my-1 pr-48 relative '>
       <div className='absolute -left-40 border-l-2 border-gray-200 p-7 h-full bg-white'>
         <div className='flex items-center  gap-2 '>
         <Link to={`/profile/${user?._id}`}>
-          <Avatar>
+          <Avatar className="w-14 h-14">
             <AvatarImage src={user?.profilePicture} alt="post_image" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>

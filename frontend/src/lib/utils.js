@@ -14,3 +14,7 @@ export const readFileAsDataURL = (file) => {
     reader.readAsDataURL(file);
   })
 }
+
+export const getBase64FromDataURL = (dataURL) => {
+  return dataURL.split(',')[1];
+};

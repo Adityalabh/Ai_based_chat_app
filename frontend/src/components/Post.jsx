@@ -107,9 +107,9 @@ const Post = ({ post }) => {
         }
     }
     return (
-        <div className='my-8 w-full max-w-sm mx-auto '>
-            <div className='flex items-center justify-between '>
-                <div className='flex items-center gap-2'>
+        <div className='my-8 w-full max-w-sm mx-auto bg-gray-200 m-3 '>
+            <div className='flex items-center justify-between border-gray-500  border-b-1 py-2 '>
+                <div className='flex items-center gap-2 '>
                     <Avatar>
                         <AvatarImage src={post.author?.profilePicture} alt="post_image" />
                         <AvatarFallback>CN</AvatarFallback>
@@ -136,12 +136,12 @@ const Post = ({ post }) => {
                 </Dialog>
             </div>
             <img
-                className='rounded-sm my-2 w-full aspect-square object-cover'
+                className='rounded-xl my-2 w-full aspect-square object-cover px-2 '
                 src={post.image}
                 alt="post_img"
             />
 
-            <div className='flex items-center justify-between my-2'>
+            <div className='flex items-center justify-between my-2 px-2'>
                 <div className='flex items-center gap-3'>
                     {
                         liked ? <FaHeart onClick={likeOrDislikeHandler} size={'24'} className='cursor-pointer text-red-600' /> : <FaRegHeart onClick={likeOrDislikeHandler} size={'22px'} className='cursor-pointer hover:text-gray-600' />
@@ -155,7 +155,7 @@ const Post = ({ post }) => {
                 </div>
                 <Bookmark onClick={bookmarkHandler} className='cursor-pointer hover:text-gray-600 ' />
             </div>
-            <span className='font-medium block mb-2'>{postLike} likes</span>
+            <span className='font-medium block mb-2 px-2'>{postLike} likes</span>
             <p>
                 <span className='font-medium mr-2'>{post.author?.username}</span>
                 {post.caption}
@@ -165,11 +165,11 @@ const Post = ({ post }) => {
                     <span onClick={() => {
                         dispatch(setSelectedPost(post));
                         setOpen(true);
-                    }} className='cursor-pointer text-sm text-gray-400'>View all {comment.length} comments</span>
+                    }} className='cursor-pointer px-2 text-sm text-gray-400'>View all {comment.length} comments</span>
                 )
             }
             <CommentDialog open={open} setOpen={setOpen} />
-            <div className='flex items-center justify-between'>
+            <div className='flex items-center justify-between px-2'>
                 <input
                     type="text"
                     placeholder='Add a comment...'

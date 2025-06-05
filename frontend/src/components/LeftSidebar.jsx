@@ -58,7 +58,7 @@ const LeftSidebar = () => {
         { icon: <PlusSquare />, text: "Create" },
         {
             icon: (
-                <Avatar className='w-6 h-6'>
+                <Avatar className='w-10 h-10'>
                     <AvatarImage src={user?.profilePicture} alt="@shadcn" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
@@ -71,7 +71,7 @@ const LeftSidebar = () => {
     return (
         <div className='fixed top-0 z-10 bg-white left-0 px-4 border-r-2 border-gray-200  w-[16%] h-screen'>
             <div className='flex flex-col'>
-                <h1 className='my-8 pl-3 font-bold text-xl '>LOGO</h1>
+                <h1 className='mt-7 pl-3 font-bold text-xl '>LOGO</h1>
                 <div>
                     {
                         sidebarItems.map((item, index) => {
