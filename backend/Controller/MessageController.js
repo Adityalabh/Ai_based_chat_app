@@ -6,7 +6,7 @@ import {Message} from "../models/Message.js";
 export const sendMessage = async (req,res) => {
     try {
         const senderId = req.id;
-        const receiverId = req.params.id;
+        const receiverId = req.params.userId;
         const {textMessage:message} = req.body;
       
         let conversation = await Conversation.findOne({
@@ -44,7 +44,7 @@ export const sendMessage = async (req,res) => {
 export const getMessage = async (req,res) => {
     try {
         const senderId = req.id;
-        const receiverId = req.params.id;
+        const receiverId = req.params.userId;
         const conversation = await Conversation.findOne({
             participants:{$all: [senderId, receiverId]}
         }).populate('messages');

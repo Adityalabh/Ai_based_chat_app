@@ -8,8 +8,8 @@ import postRoute from "./router/postRoute.js";
 import messageRoute from "./router/messageRoute.js";
 import aiRoute from "./router/aiRoute.js"; // New AI route
 import path from "path";
-import { app, server } from "./socket/socket.js";
-
+import { app,server } from "./socket/socket.js";
+ 
 dotenv.config();
 
 const PORT = process.env.PORT || 8000;
@@ -32,6 +32,10 @@ app.use("/user", userRoute);
 app.use("/post", postRoute);
 app.use("/message", messageRoute);
 app.use("/ai", aiRoute); // New AI route
+app.use(express.static(path.join(__dirname,"/frontend/dist")))
+app.get('*',(req,res)=>{
+  res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"));
+})
 
 // Health check endpoint
 app.get('/health', (req, res) => {

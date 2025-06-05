@@ -238,7 +238,7 @@ export const getUserPost = async (req, res) => {
 export const likePost = async (req, res) => {
     try {
         const likeKrneWalaUserKiId = req.id;
-        const postId = req.params.id; 
+        const postId = req.params.postId; 
         const post = await Post.findById(postId);
         if (!post) return res.status(404).json({ message: 'Post not found', success: false });
 
@@ -271,7 +271,7 @@ export const likePost = async (req, res) => {
 export const dislikePost = async (req, res) => {
     try {
         const likeKrneWalaUserKiId = req.id;
-        const postId = req.params.id;
+        const postId = req.params.postId;
         const post = await Post.findById(postId);
         if (!post) return res.status(404).json({ message: 'Post not found', success: false });
 
@@ -304,7 +304,7 @@ export const dislikePost = async (req, res) => {
 }
 export const addComment = async (req,res) =>{
     try {
-        const postId = req.params.id;
+        const postId = req.params.postId;
         const commentKrneWalaUserKiId = req.id;
 
         const {text} = req.body;
@@ -339,7 +339,7 @@ export const addComment = async (req,res) =>{
 };
 export const getCommentsOfPost = async (req,res) => {
     try {
-        const postId = req.params.id;
+        const postId = req.params.postId;
 
         const comments = await Comment.find({post:postId}).populate('author', 'username profilePicture');
 
@@ -353,7 +353,7 @@ export const getCommentsOfPost = async (req,res) => {
 }
 export const deletePost = async (req, res) => {
     try {
-        const postId = req.params.id;
+        const postId = req.params.postId;
         const authorId = req.id;
 
         const post = await Post.findById(postId);
@@ -389,7 +389,7 @@ export const deletePost = async (req, res) => {
 
 export const bookmarkPost = async (req, res) => {
     try {
-        const postId = req.params.id;
+        const postId = req.params.postId;
         const userId = req.id;
         
         const post = await Post.findById(postId);

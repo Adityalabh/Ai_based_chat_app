@@ -9,12 +9,12 @@ const router = express.Router();
 router.route("/addpost").post(isAuthenticated, upload.single('image'), addNewPost);
 router.route("/all").get(isAuthenticated,getAllPost);
 router.route("/userpost/all").get(isAuthenticated, getUserPost);
-router.route("/:id/like").get(isAuthenticated, likePost);
-router.route("/:id/dislike").get(isAuthenticated, dislikePost);
-router.route("/:id/comment").post(isAuthenticated, addComment); 
-router.route("/:id/comment/all").post(isAuthenticated, getCommentsOfPost);
-router.route("/delete/:id").delete(isAuthenticated, deletePost);
-router.route("/:id/bookmark").get(isAuthenticated, bookmarkPost);
+router.route("/:postId/like").get(isAuthenticated, likePost);
+router.route("/:postId/dislike").get(isAuthenticated, dislikePost);
+router.route("/:postId/comment").post(isAuthenticated, addComment); 
+router.route("/:postId/comment/all").post(isAuthenticated, getCommentsOfPost);
+router.route("/delete/:postId").delete(isAuthenticated, deletePost);
+router.route("/:postId/bookmark").get(isAuthenticated, bookmarkPost);
 router.post("/generate-caption", isAuthenticated, generateCaption);
 
 export default router;
