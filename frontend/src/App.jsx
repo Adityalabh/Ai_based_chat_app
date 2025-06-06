@@ -90,7 +90,7 @@ function App() {
   useEffect(() => {
     if (user) {
       if (!socketRef.current) {
-        const socketio = io("http://localhost:8000", {
+        const socketio = io("https://ai-based-chat-app.onrender.com", {
           query: {
             userId: user?._id,
           },
