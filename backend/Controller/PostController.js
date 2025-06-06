@@ -3,7 +3,7 @@ import cloudinary from "../utils/cloudinary.js";
 import { Post } from "../models/Post.js";
 import { User } from "../models/User.js";
 import { Comment } from "../models/Comment.js";
-import { getReceiverSocketId, io } from "../socket/socket.js";
+import { getReceiverSocketId, io } from "../Socket/socket.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { analyzeImage } from '../utils/imageAnalysis.js';
 

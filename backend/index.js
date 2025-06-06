@@ -8,7 +8,7 @@ import postRoute from "./router/postRoute.js";
 import messageRoute from "./router/messageRoute.js";
 import aiRoute from "./router/aiRoute.js"; // New AI route
 import path from "path";
-import { app, server } from "./socket/socket.js";
+import { app, server } from "./Socket/socket.js";
  
 dotenv.config();
 

@@ -1,5 +1,5 @@
 import {Conversation} from "../models/Conversation.js";
-import { getReceiverSocketId, io } from "../socket/socket.js";
+import { getReceiverSocketId, io } from "../Socket/socket.js";
 import {Message} from "../models/Message.js";
 
 // for chatting
