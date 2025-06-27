@@ -53,7 +53,7 @@ export const addNewPost = async (req, res) => {
 
 export const generateCaption = async (req, res) => {
     try {
-        const { imageUrl } = req.body;
+        const { imageUrl } = req.body;          
         
         if (!imageUrl) {
             return res.status(400).json({ error: 'Image URL is required' });

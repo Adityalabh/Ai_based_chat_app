@@ -63,9 +63,9 @@ export const login = async (req, res) => {
 
         // populate each post if in the posts array
         const populatedPosts = await Promise.all(
-            user.posts.map( async (postId) => {
+            user.posts.map(async (postId) => {
                 const post = await Post.findById(postId);
-                if(post.author.equals(user._id)){
+                if (post.author.equals(user._id)) {
                     return post;
                 }
                 return null;
@@ -93,7 +93,7 @@ export const login = async (req, res) => {
 };
 export const logout = async (_, res) => {
     try {
-        return res.cookie("token", "", { maxAge: 0 }).json({
+        return res.clearCookie("token", "", { maxAge: 0 }).json({
             message: 'Logged out successfully.',
             success: true
         });
@@ -104,7 +104,7 @@ export const logout = async (_, res) => {
 export const getProfile = async (req, res) => {
     try {
         const userId = req.params.id;
-        let user = await User.findById(userId).populate({path:'posts', createdAt:-1}).populate('bookmarks');
+        let user = await User.findById(userId).populate({ path: 'posts', createdAt: -1 }).populate('bookmarks');
         return res.status(200).json({
             user,
             success: true
@@ -137,6 +137,10 @@ export const editProfile = async (req, res) => {
         if (gender) user.gender = gender;
         if (profilePicture) user.profilePicture = cloudResponse.secure_url;
 
+        if (!user.username) {
+            user.username = `user_${user._id.toString().slice(-6)}`; // Generate default
+        }
+
         await user.save();
 
         return res.status(200).json({
@@ -147,8 +151,13 @@ export const editProfile = async (req, res) => {
 
     } catch (error) {
         console.log(error);
+        res.status(500).json({ // Always send error response
+            message: error.message || 'Server error',
+            success: false
+        });
     }
 };
+
 export const getSuggestedUsers = async (req, res) => {
     try {
         const suggestedUsers = await User.find({ _id: { $ne: req.id } }).select("-password");
@@ -198,9 +207,9 @@ export const followOrUnfollow = async (req, res) => {
                 User.findByIdAndUpdate(followerId, { $pull: { following: userIdToFollow } }),
                 User.findByIdAndUpdate(userIdToFollow, { $pull: { followers: followerId } })
             ]);
-            
-            return res.status(200).json({ 
-                message: 'Unfollowed successfully', 
+
+            return res.status(200).json({
+                message: 'Unfollowed successfully',
                 success: true,
                 action: 'unfollowed'
             });
@@ -210,9 +219,9 @@ export const followOrUnfollow = async (req, res) => {
                 User.findByIdAndUpdate(followerId, { $addToSet: { following: userIdToFollow } }),
                 User.findByIdAndUpdate(userIdToFollow, { $addToSet: { followers: followerId } })
             ]);
-            
-            return res.status(200).json({ 
-                message: 'Followed successfully', 
+
+            return res.status(200).json({
+                message: 'Followed successfully',
                 success: true,
                 action: 'followed'
             });
