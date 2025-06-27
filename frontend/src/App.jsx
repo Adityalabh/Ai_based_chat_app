@@ -16,8 +16,8 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import axios from "axios";
 import { SocketContext } from "./redux/socketContext";
 
-axios.defaults.baseURL = "http://localhost:8000";
-// axios.defaults.baseURL = "https://ai-based-chat-app.onrender.com";
+// axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://ai-based-chat-app.onrender.com";
 axios.defaults.withCredentials = true;
 
 const browserRouter = createBrowserRouter([
